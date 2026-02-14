@@ -144,7 +144,7 @@ class Model:
             if table[current_turn][current_column][i] == current_dice_number:
                 current_dice_number_count += 1
 
-        return [table, (current_dice_number_count * current_dice_number_count - (current_dice_number_count - 1) * (current_dice_number_count - 1)) * current_dice_number, current_dice_number_remove_count * current_dice_number, len(table[current_turn][current_column]), current_dice_number_remove_count]
+        return [table, (current_dice_number_count * current_dice_number_count - (current_dice_number_count - 1) * (current_dice_number_count - 1)) * current_dice_number, current_dice_number_remove_count * current_dice_number_remove_count * current_dice_number, len(table[current_turn][current_column]), current_dice_number_remove_count]
 
     def process_enemy_turn(self, current_dice_number):
         best_return_list = [[[[], [], []], [[], [], []]], -1000, -1000, 3, 0]
@@ -164,7 +164,7 @@ class Model:
             self.player_dices -= best_return_list[4]
 
     def process_player_turn(self, current_dice_number, current_column):
-        return_list = self.add_dice(self.table, 1, current_dice_number,current_column)
+        return_list = self.add_dice(self.table, 1, current_dice_number, current_column)
 
         if return_list:
             self.player_score += return_list[1]
@@ -184,6 +184,7 @@ class Controller:
 
         if self.model.player_dices == 9:
             self.end_of_game(self.model.enemy_score < self.model.player_score)
+            return None
 
         self.roll_dice()
         time.sleep(0.5)
@@ -192,6 +193,7 @@ class Controller:
 
         if self.model.enemy_dices == 9:
             self.end_of_game(self.model.enemy_score < self.model.player_score)
+            return None
 
         self.roll_dice()
         time.sleep(0.5)
@@ -212,7 +214,7 @@ class Controller:
     def player_turn(self):
         self.view.screen.bind("1", self.one_is_pressed)
         self.view.screen.bind("2", self.two_is_pressed)
-        self.view.screen.bind("3", self.tree_is_pressed)
+        self.view.screen.bind("3", self.three_is_pressed)
 
     def one_is_pressed(self, event):
         if len(self.model.table[1][0]) == 3:
@@ -238,7 +240,7 @@ class Controller:
             self.update_screen()
             self.view.screen.after(0, self.main)
 
-    def tree_is_pressed(self, event):
+    def three_is_pressed(self, event):
         if len(self.model.table[1][2]) == 3:
             self.player_turn()
         else:
@@ -253,10 +255,25 @@ class Controller:
     def update_screen(self):
         self.view.change_score(self.model.enemy_score, self.model.player_score)
         self.view.change_table(self.model.table)
+        self.view.change_rolled_dice(self.rolled_dice_number)
         self.view.screen.update()
 
     def end_of_game(self, current_turn):
         self.view.change_score_at_win(current_turn)
+
+        self.view.screen.bind("<Return>", self.new_game)
+
+    def new_game(self, event):
+        self.view.screen.unbind("<Return>")
+        self.model.table = [[[], [], []], [[], [], []]]
+        self.model.player_score = 0
+        self.model.enemy_score = 0
+        self.model.player_dices = 0
+        self.model.enemy_dices = 0
+        self.rolled_dice_number = 0
+        self.update_screen()
+        self.view.screen.after(0, self.main)
+
 
 
 if __name__ == '__main__':
