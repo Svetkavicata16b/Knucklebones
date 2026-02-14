@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4308145b-73a4-42cb-82c6-e06b51e976f6" name="Changes" comment="Adding exe file">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4308145b-73a4-42cb-82c6-e06b51e976f6" name="Changes" comment="Fixing typos, logical issues and adding new game starting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,12 +87,21 @@
       <option name="project" value="LOCAL" />
       <updated>1771082681085</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixing typos, logical issues and adding new game starting">
+      <option name="closed" value="true" />
+      <created>1771091755134</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1771091755134</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit of the game" />
     <MESSAGE value="Adding exe file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding exe file" />
+    <MESSAGE value="Fixing typos, logical issues and adding new game starting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing typos, logical issues and adding new game starting" />
   </component>
 </project>
